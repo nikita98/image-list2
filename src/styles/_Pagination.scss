@@ -1,0 +1,22 @@
+.pagination {
+    padding: 40px 0 60px;
+
+    &__list {
+        display: flex;
+    }
+
+    &__item {
+        height: 40px;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $bg-color;
+        margin: 5px;
+        cursor: pointer;
+
+        &_active {
+            background-color: $primary-color;
+        }
+    }
+}

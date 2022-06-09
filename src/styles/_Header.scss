@@ -1,0 +1,21 @@
+.header {
+    width: 100%;
+    background-color: $bg-color;
+
+    &__links {
+        display: flex;
+    }
+
+    &__link {
+        min-width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        transition: 0.3s;
+
+        &:hover {
+            background-color: $primary-color;
+        }
+    }
+}

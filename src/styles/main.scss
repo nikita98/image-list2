@@ -1,0 +1,32 @@
+@import 'variables';
+@import 'Header';
+@import 'ImageItem';
+@import 'ImageList';
+@import 'Pagination';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body,
+.wrapper,
+#root {
+    height: 100%;
+}
+
+body {
+    background-color: #141414;
+    color: $text-color;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    color: $text-color;
+    text-decoration: none;
+
+    &:hover {
+        color: $text-color-light;
+    }
+}
