@@ -1,14 +1,28 @@
-import React, { FC, useEffect } from 'react';
-import { IImage } from "../types";
+import React, { FC } from 'react';
+import { IImage } from "../types/image";
 import heart from '../assets/heart.svg'
+import { useTypedSelector } from "../hooks/useTypedSelector";
+import { useActions } from "../hooks/useActions";
 
 
 interface ImageItemProps {
     image: IImage;
-    addToFavorite: (image: IImage) => void;
 }
 
-const ImageItem: FC<ImageItemProps> = ({ image, addToFavorite }) => {
+const ImageItem: FC<ImageItemProps> = ({ image }) => {  //компонент карточки
+    const { favoriteImages } = useTypedSelector(state => state.image)   //при клике лайка на карточкке мы сразу обновляем 2 массива
+    const { setFavoriteImage, setFavoriteImages } = useActions()        // первый массив со всеми загруженными карточками и второй с лайкнутыми
+    function addToFavorite(image: IImage) {
+        setFavoriteImage(image)
+        if (image.favorite) {
+            setFavoriteImages([...favoriteImages, image])
+        }
+        else {
+            let newImages = favoriteImages.filter(image => image.favorite)
+            setFavoriteImages(newImages)
+        }
+    }
+
     return (
         <div className={(image.height > image.width) ? "img-item favorite img-item_high" : "img-item"}>
             <div className="img-item__inner">

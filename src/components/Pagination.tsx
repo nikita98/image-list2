@@ -1,16 +1,14 @@
 import React, { FC } from 'react';
-import { IPagination } from "../types";
+import { useTypedSelector } from "../hooks/useTypedSelector";
+import { useActions } from "../hooks/useActions";
 
-interface PaginationProps {
-    pagination: IPagination;
-    favorite?: boolean
-    changePage: (page: number) => void;
-}
+const Pagination: FC = () => {
+    const { favorite } = useTypedSelector(state => state.image)
+    const { page, pageFavorite, favoritePagesNumber } = useTypedSelector(state => state.page)
+    const { setPage, setFavoritePage } = useActions()
 
-const Pagination: FC<PaginationProps> = ({ pagination, favorite, changePage }) => {
 
-    function getPagesArray(currentPage: number, totalPages: number) {
-
+    function getPagesArray(currentPage: number, totalPages: number) { //строим массив страниц
         let result: number[] = [];
         if (totalPages === 1) {
             return result;
@@ -24,35 +22,30 @@ const Pagination: FC<PaginationProps> = ({ pagination, favorite, changePage }) =
             }
         }
         return result;
-
     }
 
-    let page: number
-    if (favorite) {
-        page = pagination.favoriteCurrentPage
-    }
-    else {
-        page = pagination.currentPage
+    function changePage(p: number) {
+        favorite ? setFavoritePage(p) : setPage(p)
     }
 
-
-    let pagesArray = getPagesArray(page, pagination.totalPages);
-
+    let pagesArray = getPagesArray(favorite ? pageFavorite : page, favorite ? favoritePagesNumber : 150);
 
     return (
         <div className="pagination">
-            <div className="pagination__list">
-                {pagesArray.map(p =>
-                    <div
-                        onClick={() => changePage(p)}
-                        key={p}
-                        className={page === p ?
-                            'pagination__item pagination__item_active' :
-                            'pagination__item'}
-                    >
-                        {p}
-                    </div>
-                )}
+            <div className="container">
+                <div className="pagination__list">
+                    {pagesArray.map(p =>
+                        <div
+                            onClick={() => changePage(p)}
+                            key={p}
+                            className={(favorite ? pageFavorite : page) === p ?
+                                'pagination__item pagination__item_active' :
+                                'pagination__item'}
+                        >
+                            {p}
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

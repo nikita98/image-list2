@@ -1,8 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ImageList from '../components/ImageList'
+import Pagination from '../components/Pagination'
+import { useActions } from "../hooks/useActions";
 
-export enum listVariant {
+
+export enum listVariant {  //можно было сделать через табы, но я сделал так, это параметры из адресной строки
     default = '',
     favorite = ':favorite'
 }
@@ -13,12 +16,18 @@ type CatalogParams = {
 };
 
 const ImgCatalog: FC = () => {
+    const { setFavoriteMod } = useActions()
     const { favorite } = useParams<CatalogParams>();
+
+    useEffect(() => {
+        setFavoriteMod(favorite === listVariant.favorite)
+    }, [favorite])
 
 
     return (
         <div className='img-list'>
-            <ImageList favoriteMod={favorite === listVariant.favorite} />
+            <ImageList />
+            <Pagination />
         </div>
     );
 };

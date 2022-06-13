@@ -10,5 +10,17 @@
         grid-gap: 20px;
         object-fit: cover;
         grid-template-columns: 1fr 1fr 1fr 1fr;
+
+        @media screen and (max-width: 991px) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @media screen and (max-width: 767px) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media screen and (max-width: 600px) {
+            grid-template-columns: 1fr;
+        }
     }
 }

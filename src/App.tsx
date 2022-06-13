@@ -4,6 +4,7 @@ import ImgCatalog from './pages/ImgCatalog'
 import PageHeader from './components/PageHeader'
 
 const App = () => {
+
   return (
     <BrowserRouter>
       <div className='wrapper'>
