@@ -40,12 +40,25 @@
         align-items: flex-end;
     }
 
+    &__content-text {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
     &__favorite {
         cursor: pointer;
-        height: 20px;
-        width: 20px;
-        margin: 5px;
+        height: 30px;
+        width: 30px;
         margin-left: auto;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+    }
+    
+    &__author {
+        margin-left: 10px;
     }
 
     &__star {
@@ -57,9 +70,4 @@
             filter: invert(22%) sepia(112%) saturate(1312%) hue-rotate(-29deg) brightness(134%) contrast(119%);
         }
     }
-
-    &__author {
-        margin: 7px;
-    }
-
 }

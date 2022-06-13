@@ -28,9 +28,11 @@ const ImageItem: FC<ImageItemProps> = ({ image }) => {  //компонент к�
             <div className="img-item__inner">
                 <img className="img-item__img" src={image.download_url} alt="" />
                 <div className="img-item__content">
-                    <div className="img-item__author">{image.author}</div>
-                    <div className="img-item__favorite favorite" onClick={() => addToFavorite(image)}                    >
-                        <img src={heart} className={image.favorite ? "img-item__star favorite" : "img-item__star"} alt="" />
+                    <div className="img-item__content-text">
+                        <div className="img-item__author">{image.author}</div>
+                        <div className="img-item__favorite favorite" onClick={() => addToFavorite(image)}                    >
+                            <img src={heart} className={image.favorite ? "img-item__star favorite" : "img-item__star"} alt="" />
+                        </div>
                     </div>
                 </div>
             </div>

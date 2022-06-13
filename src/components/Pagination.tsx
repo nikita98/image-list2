@@ -10,12 +10,16 @@ const Pagination: FC = () => {
 
     function getPagesArray(currentPage: number, totalPages: number) { //строим массив страниц
         let result: number[] = [];
+        let halfPages: number = 5;
+        if (window.innerWidth < 600) {
+            halfPages = 3
+        }
         if (totalPages === 1) {
             return result;
         }
         else {
-            let j = (((currentPage - 5) < 1) ? 1 : currentPage - 5);
-            let length = totalPages - 10 < j ? (totalPages - j) : 10;
+            let j = (((currentPage - halfPages) < halfPages) ? 1 : currentPage - halfPages);
+            let length = totalPages - halfPages * 2 < j ? (totalPages - j) : halfPages * 2;
             for (let i = 0; i <= length; i++) {
                 result.push(j);
                 j++

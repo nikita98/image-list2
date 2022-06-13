@@ -15,7 +15,6 @@ const ImageList: FC = () => {
             const newCurrentImg = favoriteImages.slice(startImg, startImg + limit)
             setCurrentImages(newCurrentImg)
             if (newCurrentImg.length === 0) {
-                console.log(123);
                 setFavoritePage(1)
             }
         }
