@@ -4,7 +4,7 @@ const initialState: ImageState = {
     images: {},
     favoriteImages: [],
     currentImages: [],
-    limit: 6,
+    imagePerPage: 20,
     favorite: false,
     loading: false,
     error: null

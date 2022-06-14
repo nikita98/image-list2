@@ -21,7 +21,7 @@ const ImgCatalog: FC = () => {
 
     useEffect(() => {
         setFavoriteMod(favorite === listVariant.favorite)
-    }, [favorite])
+    })
 
 
     return (

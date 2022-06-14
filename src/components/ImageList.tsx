@@ -5,14 +5,14 @@ import { useActions } from "../hooks/useActions";
 
 
 const ImageList: FC = () => {
-    const { error, loading, images, favoriteImages, currentImages, favorite, limit } = useTypedSelector(state => state.image)
+    const { error, loading, images, favoriteImages, currentImages, favorite, imagePerPage } = useTypedSelector(state => state.image)
     const { page, pageFavorite } = useTypedSelector(state => state.page)
     const { fetchImages, setCurrentImages, setFavoritePagesNumber, setFavoritePage } = useActions()
 
     useEffect(() => {       //при смене страницы или вкладки(избранное) мы обновляем массив выводимых карточек: currentImages
         if (favorite) {
-            const startImg = (pageFavorite - 1) * limit
-            const newCurrentImg = favoriteImages.slice(startImg, startImg + limit)
+            const startImg = (pageFavorite - 1) * imagePerPage
+            const newCurrentImg = favoriteImages.slice(startImg, startImg + imagePerPage)
             setCurrentImages(newCurrentImg)
             if (newCurrentImg.length === 0) {
                 setFavoritePage(1)
@@ -20,7 +20,7 @@ const ImageList: FC = () => {
         }
         else {
             if (!images[page]) {
-                fetchImages(page, limit)
+                fetchImages(page, imagePerPage)
             }
             else {
                 setCurrentImages(images[page])
@@ -29,7 +29,7 @@ const ImageList: FC = () => {
     }, [page, pageFavorite, favorite])
 
     useEffect(() => {       //считаем количество страниц в избранном только когда меняем вкладки
-        setFavoritePagesNumber(Math.ceil(favoriteImages.length / limit))
+        setFavoritePagesNumber(Math.ceil(favoriteImages.length / imagePerPage))
     }, [favorite])
 
 
@@ -53,10 +53,13 @@ const ImageList: FC = () => {
                         {favorite ? <h1>Избранное</h1> : <h1>Лента</h1>}
                     </div>
                     <div className="img-list__items">
-                        {currentImages &&
+                        {currentImages.length ?
                             currentImages.map(image =>
                                 <ImageItem image={image} key={image.id} />
-                            )}
+                            ) : <div className="img-list__placeholder">
+                                {favorite ?
+                                    <span>Добавьте изображения в избранное</span> :
+                                    <span>Что-то пошло не так...</span>}</div>}
                     </div>
                 </div>
             </div>

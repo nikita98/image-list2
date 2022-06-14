@@ -14,7 +14,7 @@ export interface ImageState {
     currentImages: IImage[];
     loading: boolean;
     error: null | string;
-    limit: number;
+    imagePerPage: number;
     favorite: boolean;
 }
 export enum ImageActionTypes {
