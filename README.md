@@ -19,6 +19,3 @@ npm start
 ```
 npm test
 ```
-```
-npm start
-```
