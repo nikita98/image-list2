@@ -9,7 +9,7 @@
 * Redux 
 * TypeScript
 
-## Project setup
+## Project scripts
 ```
 npm install
 ```
